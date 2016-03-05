@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-hot-swap-declarative-modules",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Enables hot swaps for modules with declarative structures",
   "main": "lib/index.js",
   "scripts": {
