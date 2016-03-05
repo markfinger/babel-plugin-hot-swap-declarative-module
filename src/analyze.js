@@ -14,7 +14,7 @@ export function isDeclarativeNode(node) {
 export function containsOnlyDeclarativeNodes(nodes) {
   const length = nodes.length;
 
-  for (var i=0; i<length; i++) {
+  for (let i=0; i<length; i++) {
     if (!isDeclarativeNode(nodes[i])) {
       return false;
     }
