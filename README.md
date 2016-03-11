@@ -1,12 +1,13 @@
 # babel-plugin-hot-swap-declarative-modules
 
-A babel plugin that enables hot swaps for modules with declarative structures
-by injecting `module.hot.accept()` calls. Works best with a code-base that
-consolidates state into a single location.
+A babel plugin that enables hot swaps for modules with declarative structures.
+
+Injects `module.hot.accept()` calls at the top of the file. Works best with a
+code-base that consolidates state into a single location.
 
 Unlike `react-hot-loader` or `react-transform-hmr`, this plugin does not aim to
-transition state between hot swaps. Instead, it aims to enable hot swaps for a
-codebase that is primarily declarative and functional.
+transition state between hot swaps. Instead, it simply aims to remove
+boilerplate.
 
 
 ## Installation
@@ -28,10 +29,9 @@ Add `"hot-swap-declarative-modules"` to the plugins in your `.babelrc`:
 
 ## Caveats & Explanation
 
-The structural scan is quite naive. The scan does not traverse beyond the most
-superficial level, so false positives are not the most difficult thing to
-achieve. More detailed scans may occur in later versions, but there is no
-current intent to implement further features.
+The structural scan is quite naive and scan does not traverse beyond the
+most superficial level, so false positives are not the most difficult thing
+to achieve.
 
 Currently, the scan involves a simple iteration over the root of the module
 and bails if it encounters anything but es2015 import/export declarations,
@@ -54,7 +54,7 @@ const c = 'c';
 export const d = c + 'd';
 
 export default function() {
- // ...
+  // ...
 }
 
 export class e extends a {
@@ -77,3 +77,9 @@ c.d = 'd';
 
 In short: conditionals, global variables, property assignments and function
 calls should be avoided at the root level.
+
+
+## Exceptions
+
+Mindful of assisting with debugging, calls to the `console` object's properties
+are assumed to be declarative.
