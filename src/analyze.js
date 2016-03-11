@@ -12,21 +12,15 @@ export function isDeclarativeNode(node) {
     return true;
   }
 
-  // White-list calls to the `console` object, to aid debugging
-  if (type === 'ExpressionStatement') {
-    const expression = node.expression;
-    if (expression.type === 'CallExpression') {
-      const callee = expression.callee;
-      if (callee.type === 'MemberExpression') {
-        const object = callee.object;
-        if (object.type === 'Identifier' && object.name === 'console') {
-          return true;
-        }
-      }
-    }
-  }
 
-  return false;
+  // White-list calls to the `console` object, to aid debugging
+  return (
+    type === 'ExpressionStatement' &&
+    node.expression.type === 'CallExpression' &&
+    node.expression.callee.type === 'MemberExpression' &&
+    node.expression.callee.object === 'Identifier' &&
+    node.expression.callee.name === 'console'
+  );
 }
 
 export function containsOnlyDeclarativeNodes(nodes) {
