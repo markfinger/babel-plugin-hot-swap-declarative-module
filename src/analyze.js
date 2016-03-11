@@ -18,8 +18,8 @@ export function isDeclarativeNode(node) {
     type === 'ExpressionStatement' &&
     node.expression.type === 'CallExpression' &&
     node.expression.callee.type === 'MemberExpression' &&
-    node.expression.callee.object === 'Identifier' &&
-    node.expression.callee.name === 'console'
+    node.expression.callee.object.type === 'Identifier' &&
+    node.expression.callee.object.name === 'console'
   );
 }
 
