@@ -50,7 +50,7 @@ describe('visitor', () => {
         plugins: [
           // We verify that our block hoist still functions when combined
           // with other plugins that use similar mechanisms
-          "transform-es2015-modules-commonjs",
+          'transform-es2015-modules-commonjs',
           require.resolve('..')
         ]
       });
