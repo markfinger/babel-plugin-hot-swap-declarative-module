@@ -55,6 +55,12 @@ describe('analyze', () => {
         `, {sourceType: 'module'});
         assert.isTrue(isDeclarativeNode(ast.program.body[0]));
       });
+      it('should return true for console.* calls', () => {
+        const ast = babylon.parse(`
+          console.log('test');
+        `);
+        assert.isTrue(isDeclarativeNode(ast.program.body[0]));
+      });
     });
     describe('fail cases', () => {
       it('should return false for implicit global variables', () => {
