@@ -1,13 +1,11 @@
 # babel-plugin-hot-swap-declarative-modules
 
-A babel plugin that enables hot swaps for modules with declarative structures.
-
-Injects `module.hot.accept()` calls at the top of the file. Works best with a
-code-base that consolidates state into a single location.
+A babel plugin that enables hot swaps for declarative modules by inserting
+`module.hot.accept()` at the top of the file.
 
 Unlike `react-hot-loader` or `react-transform-hmr`, this plugin does not aim to
-transition state between hot swaps. Instead, it simply aims to remove
-boilerplate.
+transition state between hot swaps. Instead, it simply aims to remove boilerplate.
+Works best with a code-base that consolidates state into a single location.
 
 
 ## Installation
